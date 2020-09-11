@@ -1,4 +1,4 @@
-package com.arbonkeep.concurrency.test01;
+package com.arbonkeep.concurrency.test01_wait_notify;
 
 /**
  * @author arbonkeep

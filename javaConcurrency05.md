@@ -226,7 +226,110 @@ public class MyTest02 {
             * 查看结果，我们可以得出结论：该构造方法的Runnable对象会在所有线程冲破屏障向下执行之前执行
 
 <img src="./img/img64.png" width=1000px>
+
+
+## CyclicBarrier底层源码剖析与Condition的使用详解
+    1. CyclicBarrier的底层执行流程:
+        <1> 初始化CyclicBarrier中的各种成员变量，包括parties、count和Runnable(可选)
  
+        <2> 当调用await()方法时，底层会先检查计数器count是否归零，如果是的话，那么首先会先执行Runnable，接下来就会
+            开始下一个分代(generation)
+         
+        <3> 在新的分代中，会将计数器count重新赋值为parties(指定的参数)，并创建新的generation实例
+
+        <4> 同时会调用Condition中的singnalAll方法，唤醒所有在屏障前面等待的线程，让其开始继续执行
+
+        <5> 如果计数器没有归零，那么当前的调用线程将会通过Condition的await()方法，在屏障前进行等待
+
+        <6> 以上所有执行流程均在lock锁（ReentrantLock）的控制范围，不会出现并发情况
             
+## CAS详解及透过字节码分析变量操作的原子性
+    1. synchronized关键字与Lock锁都是属于悲观锁。而我们需要学习的CAS则是乐观锁的一种实现
+
+        <1> 悲观锁：顾名思义，就是一种很悲观的锁，它认为任何情况下都会出现多线程问题，所以首先会对操作进行一个上锁操作
+                    这样来确保所有的操作都是由这一个线程来执行的
+
+        <2> 乐观锁：乐观的认为，只有它一个线程对内容进行操作，也就说它不会做任何的预先操作。那么，这样就会有两种情况发
+                    生：一种是一直到最后都只有它一个线程来操作，这样能正常执行完。还有一种就是在它完成操作之前有其它线
+                    程对该内容进行修改，这样就引发了多线程的问题。
+
+                    为此，为了保证能够正常执行，在执行更新的时候，就需要一种机制来确保当前操作的内容没有被其它线程进行
+                    修改。此时CAS就是用于解决该问题的。CAS就是乐观锁的一种重要实现。
+
+    2. CAS:Compare And Swap(比较和交换)
+
+        <1> CAS有两种情况
+            1) 首先会对变量进行比较，会将当前线程持有变量的值与实际变量的值进行比较，如果相等，那么就说明没有被其它线程
+                进行修改，那么就会进行下一个步骤：交换。也就是将变量的值赋予一个新的值。
+
+            2) 同样的，首先会对变量进行比较，会将当前线程持有变量的值与实际变量的值进行比较，如果不相等，那么就说明这个
+                变量的值被其它线程修改了。就会进行重试，也就是重新将改变量最新的值读取过来，然后再次比较和交换，这是一
+                个循环的过程，直到变量的值被修改成功为止
+
+        <2> 问题来了，CAS是两个操作比较和交换，那么它是如何保证操作的原子性的呢？
+            CAS本身是由硬件指令来提供支持的，也就是说，硬件中是通过一个原子指令来实现比较与交换的，因此CAS可以确保变量
+            操作的原子性。
+
+    3. 通过字节码来了解变量操作的原子性
+
+        <1> 简单程序
+
+```java
+
+public class MyTest1 {
+
+    private int count;
+
+    public int getCount() {
+        return count;
+    }
+    //进行+1的操作
+    public void increase() {
+        this.count++;
+    }
+
+}
+
+```
+        <2> 直接反编译javap -v 查看字节码文件
+
+            1) 运行javap -v target/classes/com/arbonkeep/concurrency04/MyTest1.class
+
+<img src="./img/img65.png" width=1000px>
+
+            2) 查看increase方法
+                查看下列字节码可知，实现赋值的操作需要使用到4条指令，辣么也就是说，这个操作不是原子性的
+
+<img src="./img/img66.png" width=1000px>
+
+            3) 为了保持原子性，我们尝试为两个方法加上synchronized关键字，这样就实现了原子操作。
+
+
+```java
+
+public class MyTest1 {
+
+    private int count;
+
+    public synchronized int getCount() {
+        return count;
+    }
+    //进行+1的操作
+    public synchronized void increase() {
+        this.count++;
+    }
+
+}
+
+```
+
+<img src="./img/img67.png" width=1000px>
+
+            4) 上述加上synchronized关键字的方法可以实现原子性，但是它的性能受到影响。为什么呢？我们分析在get的方法
+                上获取应该是可以多个线程可以同时获取的但是在这加上了synchronized就是说同一时间只能有一个线程获取到
+                ，那么就有人会想将get方法上的synchronized去掉，这样是不可行的。因为我们知道synchronized是可以保证
+                变量的可见性的。如果在getCount()方法上去掉了synchronized的话，那么当count值被修改了之后，其它线程
+                调用这个getCount()时有可能读到的是一个旧的值，而非保证是最新的值
+        
 
 

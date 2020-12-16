@@ -5,8 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4e9c5397-09e8-44a4-a07b-fc5c0927309e" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/arbonkeep/concurrency03/MyTest01.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/arbonkeep/concurrency03/MyTest02.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/arbonkeep/concurrency04/MyTest1.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../javaConcurrency05.md" beforeDir="false" afterPath="$PROJECT_DIR$/../javaConcurrency05.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -42,7 +42,9 @@
     <option name="vmOptions" value="-DarchetypeCatalog=internal" />
   </component>
   <component name="ProjectId" id="1ldzrO2MS2gYxSCGqZyRIb2TOtZ" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="flattenModules" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -53,6 +55,7 @@
     <property name="aspect.path.notification.shown" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
+    <property name="nodejs_package_manager_path" value="npm" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
@@ -142,17 +145,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
-      <option name="arquillianRunConfiguration">
-        <value>
-          <option name="containerStateName" value="" />
-        </value>
-      </option>
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration default="true" type="JUnit" factoryName="JUnit">
       <option name="TEST_OBJECT" value="class" />
       <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
@@ -224,6 +216,9 @@
       <workItem from="1601891505792" duration="934000" />
       <workItem from="1602216438051" duration="8625000" />
       <workItem from="1607941956285" duration="6813000" />
+      <workItem from="1608034782212" duration="1078000" />
+      <workItem from="1608044584672" duration="1487000" />
+      <workItem from="1608090290092" duration="636000" />
     </task>
     <servers />
   </component>
@@ -231,22 +226,22 @@
     <option name="version" value="3" />
   </component>
   <component name="WindowStateProjectService">
-    <state width="1493" height="632" key="GridCell.Tab.0.bottom" timestamp="1607952702509">
+    <state width="1493" height="632" key="GridCell.Tab.0.bottom" timestamp="1608039093151">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
-    <state width="1493" height="632" key="GridCell.Tab.0.bottom/0.0.1536.864@0.0.1536.864" timestamp="1607952702509" />
-    <state width="1493" height="632" key="GridCell.Tab.0.center" timestamp="1607952702508">
+    <state width="1493" height="632" key="GridCell.Tab.0.bottom/0.0.1536.864@0.0.1536.864" timestamp="1608039093151" />
+    <state width="1493" height="632" key="GridCell.Tab.0.center" timestamp="1608039093151">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
-    <state width="1493" height="632" key="GridCell.Tab.0.center/0.0.1536.864@0.0.1536.864" timestamp="1607952702508" />
-    <state width="1493" height="632" key="GridCell.Tab.0.left" timestamp="1607952702508">
+    <state width="1493" height="632" key="GridCell.Tab.0.center/0.0.1536.864@0.0.1536.864" timestamp="1608039093151" />
+    <state width="1493" height="632" key="GridCell.Tab.0.left" timestamp="1608039093151">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
-    <state width="1493" height="632" key="GridCell.Tab.0.left/0.0.1536.864@0.0.1536.864" timestamp="1607952702508" />
-    <state width="1493" height="632" key="GridCell.Tab.0.right" timestamp="1607952702509">
+    <state width="1493" height="632" key="GridCell.Tab.0.left/0.0.1536.864@0.0.1536.864" timestamp="1608039093151" />
+    <state width="1493" height="632" key="GridCell.Tab.0.right" timestamp="1608039093151">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
-    <state width="1493" height="632" key="GridCell.Tab.0.right/0.0.1536.864@0.0.1536.864" timestamp="1607952702509" />
+    <state width="1493" height="632" key="GridCell.Tab.0.right/0.0.1536.864@0.0.1536.864" timestamp="1608039093151" />
   </component>
   <component name="masterDetails">
     <states>

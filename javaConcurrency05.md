@@ -331,5 +331,194 @@ public class MyTest1 {
                 变量的可见性的。如果在getCount()方法上去掉了synchronized的话，那么当count值被修改了之后，其它线程
                 调用这个getCount()时有可能读到的是一个旧的值，而非保证是最新的值
         
+## CAS底层实现与AtomicInteger源码剖析、关于CAS问题描述
 
+    1. 基于上述问题。也就是说不能很好的保证原子性的操作的同时保证效率，JDK提供了atomic包，该包下的类都是基于原子性
+        操作的。
+
+<img src="./img/img68.png" width=1000px>
+
+    2. 主要了解一下AtomicInteger
+
+```java
+
+public class MyTest2 {
+
+    public static void main(String[] args) {
+        AtomicInteger atomicInteger = new AtomicInteger(3);
+
+        System.out.println(atomicInteger.get());//将值获取出来3
+        System.out.println(atomicInteger.getAndIncrement());//将值获取出来并进行+1，此时返回的是没有自增的结果3
+        System.out.println(atomicInteger.getAndSet(6));//此时获取的是旧的值4，并将该值设置为6
+        System.out.println(atomicInteger.get());//此时获取的值为6
+    }
+}
+
+```
+    3. 了解一下getAndSet()方法
+        1) 查看方法
+
+<img src="./img/img69.png" width=1000px>
+
+        2) 进入unsafe查看，该类未开源，所有只能查看反编译的结果。使用到循环，这也就应证了比较和交换是循环的直到成功
+            在底层，CompareAndSwapInt是通过一条cpu指令完成的，保证了原子性
+
+<img src="./img/img70.png" width=1000px>
+
+    4. CAS涉及的操作数
+        <1> 需要被操作的内存值V
+
+        <2> 需要进行比较的的值A
+
+        <3> 需要进行写入的值B
+
+        只有当V==A时，CAS才会通过原子操作的手段来讲V的值更新为B
+
+    5. CAS存在的问题
+        <1> 循环开销问题：在并发最大的情况下会导致线程一直自旋，因为对于原子的操作是在一个do...while循环中，从上面代码
+                        可以一直到
+
+        <2> 只能保证一个变量的原子操作：如：对于AtomicInterger就是对一个整形变量是一个原子操作，而如果想要实现多个整型
+            变量的原子操作则用它就不行了，不过并发包中有一个能满足这种需求的类存在：AtomicReference
+
+        <3> ABA问题
+                1) 什么是ABA问题呢？
+                    比如，一变量初始值为1，然后进行一个CAS更新操作，在CAS更新操作完成之前，另外一个线程对该变量进行修改
+                    将1变为3，而后又将变量的值改回为1。这时之前的线程又回来了，它发现该变量的值没有发生改变(实际上其它
+                    线程对它进行了修改只是还原了而已)。此时该CAS操作依然能够成功，从程序的正确性来讲其实这没啥问题，最终结果不会有啥影响，但是，从程序的语义角度则就不正确。因为这已经被其线程进行了修改。
+
+                    解决该问题可以使用版本号的方式来实现，只要数据更改了，那么版本号就+1
+
+                2) 例子描述:
+                    小明去ATM取钱 在一台机器上取钱 100-50机器卡住了(100-50待操作)
+                    去另外一台ATM机器上取了50 100-50=50这个操作执行成功
+			        女盆友给他转了50 (50+50=100)
+			        突然之前最先操作的机器 恢复了 出现ABA问题
+
+## Future模式示例剖析与源码详解
+
+    1. Future模式简介
+        Future模式是重jdk1.5开始引入的。本质上来说，它可以使得一个任务异步执行，也就是说该任务执行之后，不论任务执行成
+        功还是失败，我们能在未来的某一个时间获取到执行的结果。通俗的说，我们完成一个任务，正常情况需要等到任务执行完成才
+        能获取到结果，但是在使用Future后，此任务会交给其他线程继续执行，而主线程可以继续向下执行，在未来的某个时间，我
+        们能够获取到该任务的结果。
+
+    2. 详细了解Future类的使用
+        
+        <1> 文档了解
+
+<img src="./img/img71.png" width=1000px>
+
+        <2> 方法实现了解
+
+            1) 主要包含以下5个方法，Future是一个接口，所以具体实现我们还需关注实现类
+
+<img src="./img/img72.png" width=1000px>
+
+            2) 了解两个get方法
+
+<img src="./img/img73.png" width=1000px>
+
+<img src="./img/img74.png" width=1000px>
+
+    3. Future实现类FutureTask
+
+        <1> 查看源码，会发现FutureTask实现了RunnableFuture接口，而RunnableFuture又继承了Future<V>和Runnable，感兴
+            趣的可以去查看源码，这里不在显示
+
+        <2> FutureTask的两个重要的构造方法
+            1) 相比之下，一个接受Runnable实例，一个接受的是Callable实例，当想要执行任务但是不需要得到返回结果，那么就
+                用Runnable的构造方法，而如果需要有返回结果当然就使用Callable的构造方法
+
+<img src="./img/img75.png" width=1000px>
+
+    
+    4. 实例演示
+        <1> 例子如下
+
+```java
+public class MyTest01 {
+
+    public static void main(String[] args) {
+        //需要有返回值
+        Callable<Integer> callable = () -> {
+            System.out.println("pre execution");
+            int result = new Random().nextInt(500);
+            System.out.println("post execution");
+            return  result;
+        };
+
+        //构建FutureTask
+        FutureTask<Integer> futureTask = new FutureTask <>(callable);
+
+        //创建一个线程执行任务,futureTask底层继承了Runnable所以可以直接当做参数传入
+        new Thread(futureTask).start();
+        System.out.println("thread has started");
+        //获取执行结果
+        try {
+            System.out.println("TaskResult: " + futureTask.get());;
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+
+    }
+}
+
+```
+
+        <2> 程序运行分析
+
+<img src="./img/img76.png" width=1000px>
+
+        <3> 改造程序，查看延时阻塞的效果
+            此时，输出thread has started，pre execution之后，就阻塞了一会然后输出post execution，TaskResult: 432
+
+```java
+public class MyTest01 {
+
+    public static void main(String[] args) {
+        //需要有返回值
+        Callable<Integer> callable = () -> {
+            System.out.println("pre execution");
+            //子线程休眠5秒
+            Thread.sleep(5000);
+            int result = new Random().nextInt(500);
+            System.out.println("post execution");
+            return  result;
+        };
+
+        //构建FutureTask
+        FutureTask<Integer> futureTask = new FutureTask <>(callable);
+
+        //创建一个线程执行任务,futureTask底层继承了Runnable所以可以直接当做参数传入
+        new Thread(futureTask).start();
+        System.out.println("thread has started");
+        //获取执行结果
+        try {
+            //主线程休眠两秒
+            Thread.sleep(2000);
+            System.out.println("TaskResult: " + futureTask.get());;
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+
+    }
+}
+
+```
+    <4> 查看 get(long timeout, TimeUnit unit)效果。
+        1) 只需要修改下面内容
+            修改的意思就是只会等待3毫秒，3毫秒内没有获取到子线程的结果，就会抛出异常
+
+<img src="./img/img77.png" width=1000px>
+
+        2) 运行结果如下
+            观察结果，可知：在抛出超时异常后，子线程最后仍然输出，也就是说继续执行了。这是因为主线程的异常不会干扰到
+            FutureTask这个子线程的执行的
+
+<img src="./img/img77.png" width=1000px>
 

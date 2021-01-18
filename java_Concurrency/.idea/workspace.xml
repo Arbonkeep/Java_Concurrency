@@ -5,10 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4e9c5397-09e8-44a4-a07b-fc5c0927309e" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/arbonkeep/concurrency04/MyTest2.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/arbonkeep/concurrency05/MyTest01.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../javaConcurrency05.md" beforeDir="false" afterPath="$PROJECT_DIR$/../javaConcurrency05.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/arbonkeep/concurrency05/MyTest02.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/arbonkeep/concurrency05/MyTest03.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/arbonkeep/concurrency05/ThreadLocalTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/java_Concurrency.iml" beforeDir="false" afterPath="$PROJECT_DIR$/java_Concurrency.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -51,6 +53,8 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SearchEverywhereHistoryKey" value="Condition&#9;FILE&#9;jar://D:/java/jdk1.8.0_131/src.zip!/java/util/concurrent/locks/Condition.java&#10;Reen&#9;PSI&#9;JAVA://java.util.concurrent.locks.ReentrantLock&#10;LocK&#9;FILE&#9;jar://D:/java/jdk1.8.0_131/src.zip!/java/util/concurrent/locks/Lock.java&#10;Lock&#9;PSI&#9;JAVA://java.util.concurrent.locks.Lock&#10;thread&#9;PSI&#9;JAVA://java.lang.Thread&#10;Objec&#9;PSI&#9;JAVA://java.lang.Object&#10;object&#9;null&#9;null" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
@@ -60,9 +64,9 @@
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
-    <property name="settings.editor.selected.configurable" value="preferences.keymap" />
+    <property name="settings.editor.selected.configurable" value="preferences.sourceCode" />
   </component>
-  <component name="RunManager" selected="Application.MyTest01 (1)">
+  <component name="RunManager" selected="Application.ThreadLocalTest">
     <configuration default="true" type="Applet" factoryName="Applet">
       <option name="HTML_USED" value="false" />
       <option name="WIDTH" value="400" />
@@ -70,8 +74,8 @@
       <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
       <module />
     </configuration>
-    <configuration name="MyTest01 (1)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.arbonkeep.concurrency05.MyTest01" />
+    <configuration name="MyTest03" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.arbonkeep.concurrency05.MyTest03" />
       <module name="java_Concurrency" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <extension name="coverage">
@@ -84,55 +88,13 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="MyTest01" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.arbonkeep.concurrency03.MyTest01" />
+    <configuration name="ThreadLocalTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.arbonkeep.concurrency05.ThreadLocalTest" />
       <module name="java_Concurrency" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.arbonkeep.concurrency03.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="MyTest02" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.arbonkeep.concurrency03.MyTest02" />
-      <module name="java_Concurrency" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.arbonkeep.concurrency03.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="MyTest2 (1)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.arbonkeep.concurrency04.MyTest2" />
-      <module name="java_Concurrency" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.arbonkeep.concurrency04.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="MyTest2" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.arbonkeep.concurrency02.MyTest2" />
-      <module name="java_Concurrency" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.arbonkeep.concurrency02.*" />
+          <option name="PATTERN" value="com.arbonkeep.concurrency05.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -142,6 +104,68 @@
     </configuration>
     <configuration default="true" type="Application" factoryName="Application">
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+      <option name="arquillianRunConfiguration">
+        <value>
+          <option name="containerStateName" value="" />
+        </value>
+      </option>
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="MyTest02.test01" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="java_Concurrency" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.arbonkeep.concurrency05.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.arbonkeep.concurrency05" />
+      <option name="MAIN_CLASS_NAME" value="com.arbonkeep.concurrency05.MyTest02" />
+      <option name="METHOD_NAME" value="test01" />
+      <option name="TEST_OBJECT" value="method" />
+      <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="MyTest02.test02" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="java_Concurrency" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.arbonkeep.concurrency05.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.arbonkeep.concurrency05" />
+      <option name="MAIN_CLASS_NAME" value="com.arbonkeep.concurrency05.MyTest02" />
+      <option name="METHOD_NAME" value="test02" />
+      <option name="TEST_OBJECT" value="method" />
+      <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="MyTest02.test03" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="java_Concurrency" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.arbonkeep.concurrency05.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.arbonkeep.concurrency05" />
+      <option name="MAIN_CLASS_NAME" value="com.arbonkeep.concurrency05.MyTest02" />
+      <option name="METHOD_NAME" value="test03" />
+      <option name="TEST_OBJECT" value="method" />
+      <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -172,19 +196,19 @@
       </method>
     </configuration>
     <list>
-      <item itemvalue="Application.MyTest2" />
-      <item itemvalue="Application.MyTest01" />
-      <item itemvalue="Application.MyTest02" />
-      <item itemvalue="Application.MyTest2 (1)" />
-      <item itemvalue="Application.MyTest01 (1)" />
+      <item itemvalue="Application.MyTest03" />
+      <item itemvalue="Application.ThreadLocalTest" />
+      <item itemvalue="JUnit.MyTest02.test01" />
+      <item itemvalue="JUnit.MyTest02.test02" />
+      <item itemvalue="JUnit.MyTest02.test03" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.MyTest01 (1)" />
-        <item itemvalue="Application.MyTest2 (1)" />
-        <item itemvalue="Application.MyTest02" />
-        <item itemvalue="Application.MyTest01" />
-        <item itemvalue="Application.MyTest2" />
+        <item itemvalue="Application.ThreadLocalTest" />
+        <item itemvalue="Application.MyTest03" />
+        <item itemvalue="JUnit.MyTest02.test03" />
+        <item itemvalue="JUnit.MyTest02.test02" />
+        <item itemvalue="JUnit.MyTest02.test01" />
       </list>
     </recent_temporary>
   </component>
@@ -223,33 +247,27 @@
       <workItem from="1608121678784" duration="7487000" />
       <workItem from="1608168810399" duration="69000" />
       <workItem from="1608168967785" duration="31000" />
+      <workItem from="1608170478009" duration="130000" />
+      <workItem from="1608170638678" duration="131000" />
+      <workItem from="1608170878742" duration="10000" />
+      <workItem from="1608170948468" duration="112000" />
+      <workItem from="1608171246103" duration="89000" />
+      <workItem from="1608171350781" duration="704000" />
+      <workItem from="1608172624831" duration="340000" />
+      <workItem from="1608172989622" duration="12393000" />
+      <workItem from="1608251638895" duration="2784000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
-  <component name="WindowStateProjectService">
-    <state width="1493" height="232" key="GridCell.Tab.0.bottom" timestamp="1608131452555">
-      <screen x="0" y="0" width="1536" height="864" />
-    </state>
-    <state width="1493" height="232" key="GridCell.Tab.0.bottom/0.0.1536.864@0.0.1536.864" timestamp="1608131452555" />
-    <state width="1493" height="232" key="GridCell.Tab.0.center" timestamp="1608131452555">
-      <screen x="0" y="0" width="1536" height="864" />
-    </state>
-    <state width="1493" height="232" key="GridCell.Tab.0.center/0.0.1536.864@0.0.1536.864" timestamp="1608131452555" />
-    <state width="1493" height="232" key="GridCell.Tab.0.left" timestamp="1608131452554">
-      <screen x="0" y="0" width="1536" height="864" />
-    </state>
-    <state width="1493" height="232" key="GridCell.Tab.0.left/0.0.1536.864@0.0.1536.864" timestamp="1608131452554" />
-    <state width="1493" height="232" key="GridCell.Tab.0.right" timestamp="1608131452555">
-      <screen x="0" y="0" width="1536" height="864" />
-    </state>
-    <state width="1493" height="232" key="GridCell.Tab.0.right/0.0.1536.864@0.0.1536.864" timestamp="1608131452555" />
-    <state x="431" y="181" width="672" height="678" key="search.everywhere.popup" timestamp="1608126188099">
-      <screen x="0" y="0" width="1536" height="864" />
-    </state>
-    <state x="431" y="181" width="672" height="678" key="search.everywhere.popup/0.0.1536.864@0.0.1536.864" timestamp="1608126188099" />
+  <component name="XDebuggerManager">
+    <pin-to-top-manager>
+      <pinned-members>
+        <PinnedItemInfo parentTag="java.lang.ThreadLocal" memberName="threadLocalHashCode" />
+      </pinned-members>
+    </pin-to-top-manager>
   </component>
   <component name="masterDetails">
     <states>
